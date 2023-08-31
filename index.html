@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>bloons</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css">    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('OETZTYP_.TTF') format('truetype');
+        }
+
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            background-image: url('background1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(36, 36, 36);
+            color: white;
+            font-size: 1vh;
+            width: 100vw;
+            height: 6vh;
+            padding: 2vh;
+            border: 3px solid white;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            font-size: 7vh;
+            font-family: 'CustomFont';
+            text-shadow: 1px 1px 0 rgb(195, 195, 195), 
+                     2px 2px 0 rgb(196, 196, 196), 
+                     3px 3px 0 rgb(222, 0, 0);
+        }
+
+        .connect-btn {
+            position: fixed;
+            left: 37%;
+            top: 24%;
+            transform: translate(-50%,-50%);
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #e7eae7;
+            width: 30vh;
+            color: rgb(24, 24, 24);
+            font-weight: 900;
+            font-size: 3vh;
+            border: 3px solid black;
+            border-radius: 5px;
+            z-index: 100;
+            font-family: 'CustomFont';
+        }
+        
+        .window{
+            position: fixed; 
+            width: 90vh; 
+            height: 70vh; 
+            left:50%; 
+            top:55%; 
+            transform: translate(-50%,-50%);
+        }
+
+        .title-bar{
+            height: 8vh;
+        }
+        .title-bar-text {
+            font-size: 3vh;
+        }
+        .window-body {
+            font-size: 3vh;
+            width: 56%;
+            padding: 2vh;
+        }
+
+        .navButton{
+            width: 6vh;
+            height: 6vh;
+            transform: translate(-70%,0%);
+        }
+        .imageThumbnail{
+            position: absolute;
+            left:59%; 
+            top:32%; 
+            width: 27vh;
+            height: 27vh;
+            z-index: 1000;
+            border: 3px solid black;
+            border-radius: 5px;
+        }
+        .progressBar{
+            position: fixed;
+            left:50%; 
+            top:80%; 
+            transform: translate(-50%,-50%) scale(2.5);
+            z-index: 10000;
+        }
+        .mintButton{
+            transform: scale(2);
+            position: fixed;
+            left:50%; 
+            top:75%; 
+            transform: translate(-50%,-50%) scale(2.5);
+            z-index: 10000;
+        }
+
+        .mintText{
+            transform: scale(2);
+            position: fixed;
+            left:50%; 
+            top:92%; 
+            transform: translate(-50%,-50%) scale(2.5);
+            z-index: 10000;
+        }
+
+        #rangeValue {
+            display: inline-block;
+            width: 2em;
+            text-align: right;
+            margin-left: 2.5vh; 
+        }
+
+        .field-row {
+            position: absolute;
+            left:78%; 
+            top:64%; 
+            width: 27vh;
+            height: 27vh;
+            z-index: 1000;
+            transform: scale(1.5, 1.1);
+            height: 15vh;
+        }
+        label[for="range28"] {
+            margin-right: -4vh; /* Adjust this value as needed */
+        }
+
+        label[for="range28"], #rangeValue {
+            font-size: 1vh; /* Change this to the size you want */
+            position: fixed;
+            transform: translate(100%,0);
+        
+        }
+
+        #opensea-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e7eae7;
+            color: rgb(24, 24, 24);
+            font-weight: 900;
+            font-size: 3vh;
+            border: 3px solid black;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'CustomFont';
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BLOONS NFT</h1>
+    </div>
+    <main>
+        <img src="btd1.jpg" class="imageThumbnail">
+        
+        <progress id="bar1" max="100" value="10" class="progressBar"></progress>
+        <progress id="bar2" max="100" value="20" class="progressBar" style="display: none;"></progress>
+        <progress id="bar3" max="100" value="30" class="progressBar" style="display: none;"></progress>
+        <progress id="bar4" max="100" value="40" class="progressBar" style="display: none;"></progress>
+        <progress id="bar5" max="100" value="50" class="progressBar" style="display: none;"></progress>
+        <progress id="bar6" max="100" value="60" class="progressBar" style="display: none;"></progress>
+        <progress id="bar7" max="100" value="70" class="progressBar" style="display: none;"></progress>
+        <progress id="bar8" max="100" value="80" class="progressBar" style="display: none;"></progress>
+        <progress id="bar9" max="100" value="90" class="progressBar" style="display: none;"></progress>
+        <progress id="bar10" max="100" value="100" class="progressBar" style="display: none;"></progress>
+
+        <!-- Content of the site goes here -->
+        <button id="connect-btn" class="connect-btn">Connect</button>
+        <div class="window">
+            <div class="title-bar">
+              <div class="title-bar-text"></div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="navButton"></button>
+                <button aria-label="Maximize" class="navButton"></button>
+                <button aria-label="Close" class="navButton"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>Balloon assassin monkeys make their debut to web3 
+                in the form of a limited release NFT game, playable inside opensea.</p>
+            
+                <ul>
+                    <li>Supply: 1200 NFTs</li>
+                    <li>Price: .02 ETH</li>
+                    <li>Reveal: Instant</li>
+                </ul>
+                <div>
+                    <a href="https://opensea.io/collection/bloonsnft" target="_blank">
+                        <img src="./os_logo.png" style="width: 8vh; transform: translate(100%,0);" alt="Opensea Collection">
+                    </a>
+                </div>
+                <div>
+                    <a href="https://etherscan.io/address/0xcb927b1bb7775cf4865cfd326b634979df02d7a4" target="_blank">
+                        <img src="./etherscan_logo.png" style="width: 8vh; transform: translate(100%,0);" alt="Etherscan">
+                    </a>
+                </div>
+                <div class="field-row">
+                    <div>
+                        <input id="range28" class="has-box-indicator" type="range" min="1" max="20" step="1" value="1" oninput="updateRangeValue(this.value)" />
+                    </div>
+                </div>
+
+                <div class="mintText" style="position: absolute; left: 60%; top: 80%; font-size: 1vh; white-space: nowrap;">
+                    <label for="range28">Mint Number:<span id="rangeValue">1</span></label>
+                </div>
+
+                <div style="text-align: right;"></div>
+                    <button class="mintButton" id="mintButton">mint</button>                
+                </div>
+                <p id="mintCountText" class="mintText">1/1200 NFTs minted</p>                
+            </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+          <script>
+            var rangeValueGlobal = 1;
+            
+            function updateRangeValue(value) {
+                rangeValueGlobal = value;
+                console.log(rangeValueGlobal);
+                document.getElementById('rangeValue').innerText = value;
+            }
+
+            window.onload = function() {
+                document.getElementById('range28').value = 1;
+                document.getElementById('rangeValue').innerText = 1;
+            }
+
+            let accountConnected = 'false';
+            let accountString = '';
+            document.getElementById('connect-btn').addEventListener('click', async () => {
+                if (typeof window.ethereum !== 'undefined') {
+                    try {
+                        // Request account access
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        const account = accounts[0];
+                        accountString = account;
+                        console.log(accountString);
+                        accountConnected = 'true';
+                        const networkId = await window.ethereum.request({ method: 'net_version' });
+                        if(networkId !== '1') {
+                            alert('Please switch to the main network');
+                        } else {
+                            document.getElementById('connect-btn').innerText = account.substring(0, 7);
+                        }
+                    } catch (error) {
+                        // User denied account access...
+                        console.error("User denied account access")
+                    }
+                } else {
+                    console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                }
+            });
+
+            document.getElementById('mintButton').addEventListener('click', async () => {
+                if(accountConnected == 'false') {
+                    showWalletPopup();
+                }
+                let price = .02 * rangeValueGlobal;
+
+                // call mintToMultipl(address, amount) payable with cost of price
+                contract.methods.mintMultiple(accountString, rangeValueGlobal)
+                    .send({ from: accountString, value: web3.utils.toWei(price.toString(), 'ether') })
+                    .on('transactionHash', function(hash){
+                        // This callback gets triggered when the transaction is pending.
+                        console.log('transactionHash', hash);
+                    })
+                    .on('receipt', function(receipt){
+                        // This callback gets triggered when the transaction is mined.
+                        console.log('receipt', receipt);
+                        updateMintCount(); 
+                    })
+                    .on('error', function(error, receipt) {
+                        // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+                        console.log('error', error);
+                    });
+            });
+
+            function showWalletPopup() {
+                const popup = document.createElement('div');
+                popup.className = 'popup window';
+                popup.style.display = 'flex';
+                popup.style.flexDirection = 'column';
+                popup.style.justifyContent = 'center';
+                popup.style.alignItems = 'center';
+                popup.style.textAlign = 'center'; 
+                popup.style.zIndex = '100000000';
+                popup.style.height = '40vh';
+                popup.style.top = '25vh';
+                popup.style.width = '50vh';
+                popup.style.left = '50%';
+                popup.style.transform = "translate(-50%, 40%)";
+                popup.style.position = 'absolute';
+
+                const popupText = document.createElement('div');
+                popupText.className = 'window-body';
+                popupText.style.width = '80%';
+                popupText.textContent = 'Please connect a web3 wallet to continue.';
+                popupText.style.fontSize = '3vh';
+                popupText.style.color = 'black';
+                popup.appendChild(popupText);
+
+                const titleBar = document.createElement('div');
+                titleBar.className = 'title-bar popup-title-bar';
+                titleBar.style.zIndex = '100000000';
+                titleBar.style.width = '98%';
+                titleBar.style.position = 'absolute';
+                titleBar.style.top = '0';
+
+                const titleBarText = document.createElement('div');
+                titleBarText.className = 'popup-title-bar-text';
+                titleBarText.textContent = 'Connect Wallet';
+                titleBarText.style.zIndex = '100000000';
+                titleBarText.style.fontSize = '3vh';
+                titleBarText.style.fontFamily = 'CustomFont'
+                titleBarText.style.padding = '2vh';
+                titleBarText.style.color = 'white';
+                titleBarText.style.marginLeft = '10vh';
+                titleBarText.style.textAlign = 'center';
+
+                titleBar.appendChild(titleBarText);
+                popup.appendChild(titleBar);
+
+                const okButton = document.createElement('button');
+                okButton.textContent = 'Okay';
+                okButton.style.transform = 'scale(1.5,1.5)';
+                okButton.addEventListener('click', function() {
+                    document.body.removeChild(popup);
+                });
+                popup.appendChild(okButton);
+
+                document.body.appendChild(popup);
+            }
+
+            async function displayProgressBar() {
+                // Array of all progress bar ids
+                var progressBarIds = ['bar1', 'bar2', 'bar3', 'bar4', 'bar5', 'bar6', 'bar7', 'bar8', 'bar9', 'bar10'];
+
+                //const mintCount = await contract.methods.getCount().call();
+
+                // Calculate the progress bar id based on the mint count
+                const barId = Math.floor((mintCount % 1200) / 120);
+
+                // Loop through all progress bar ids
+                for (var i = 0; i < progressBarIds.length; i++) {
+                    // Get the current progress bar element
+                    var progressBar = document.getElementById(progressBarIds[i]);
+
+                    // If the current progress bar id matches the calculated id, set its display to block, otherwise set it to none
+                    if (i === barId) {
+                        progressBar.style.display = 'block';
+                    } else {
+                        progressBar.style.display = 'none';
+                    }
+                }
+            }
+
+            let web3;
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+            } else {
+                // Set a default provider
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"MAX_SUPPLY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINT_PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"contractURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"numberOfTokens","type":"uint256"}],"name":"mintMultiple","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"newBaseURI","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"newContractURI","type":"string"}],"name":"setContractURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+            const contractAddress = "0xcB927B1bb7775cf4865Cfd326b634979DF02D7A4";
+
+            const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            async function updateMintCount() {
+                mintCount = await contract.methods.getCount().call();
+                document.getElementById('mintCountText').textContent = `${mintCount}/1200 NFTs minted`;
+                displayProgressBar(); // Call the function to update the progress bar
+
+            }
+
+            let mintCount = '0';
+            window.onload = function() {
+                updateMintCount();
+            }
+
+            </script>
+    </main>
+</body>
+</html>
+
